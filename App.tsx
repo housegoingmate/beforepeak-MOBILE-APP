@@ -1,17 +1,18 @@
-import 'react-native-url-polyfill/auto';
-import 'react-native-reanimated';
+// import 'react-native-url-polyfill/auto'; // Commented for Expo Go compatibility
+// import 'react-native-reanimated'; // Commented for Expo Go compatibility
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { StripeProvider } from '@stripe/stripe-react-native';
+// import { StripeProvider } from '@stripe/stripe-react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+// import Icon from 'react-native-vector-icons/MaterialIcons'; // Commented for Expo Go compatibility
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from './src/contexts/LanguageContext';
 import { useAuth } from './src/hooks/useAuth';
 
-import { APP_SCHEME, DEEP_LINK_HOST, STRIPE_PUBLISHABLE_KEY } from './src/config/env';
+import { APP_SCHEME, DEEP_LINK_HOST } from './src/config/env';
+// import { STRIPE_PUBLISHABLE_KEY } from './src/config/env';
 import { supabase } from './src/lib/supabase';
 
 // Screens
@@ -50,13 +51,13 @@ function MainTabs() {
     <Tab.Navigator key={language}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
-          let iconName: string = 'home';
-          if (route.name === 'Home') iconName = 'home';
-          else if (route.name === 'Restaurants') iconName = 'search';
-          else if (route.name === 'Bookings') iconName = 'event';
-          else if (route.name === 'Referrals') iconName = 'card-giftcard';
-          else if (route.name === 'Profile') iconName = 'person';
-          return <Icon name={iconName} size={size} color={color} />;
+          let iconText: string = '🏠';
+          if (route.name === 'Home') iconText = '🏠';
+          else if (route.name === 'Restaurants') iconText = '🔍';
+          else if (route.name === 'Bookings') iconText = '📅';
+          else if (route.name === 'Referrals') iconText = '🎁';
+          else if (route.name === 'Profile') iconText = '👤';
+          return <Text style={{ fontSize: size * 0.8, color }}>{iconText}</Text>;
         },
         tabBarActiveTintColor: '#7C3AED',
         tabBarInactiveTintColor: '#9CA3AF',
@@ -118,7 +119,7 @@ export default function App() {
   } as const;
 
   return (
-    <StripeProvider publishableKey={STRIPE_PUBLISHABLE_KEY}>
+    {/* <StripeProvider publishableKey={STRIPE_PUBLISHABLE_KEY}> */}
       <LanguageProvider>
         <NavigationContainer linking={linking}>
           <StatusBar barStyle="dark-content" />
@@ -144,6 +145,6 @@ export default function App() {
         </Stack.Navigator>
         </NavigationContainer>
       </LanguageProvider>
-    </StripeProvider>
+    {/* </StripeProvider> */}
   );
 }

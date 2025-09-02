@@ -1,4 +1,25 @@
 {
   "name": "beforepeak",
-  "displayName": "beforepeak"
+  "displayName": "beforepeak",
+  "expo": {
+    "name": "BeforePeak",
+    "slug": "beforepeak",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.beforepeak.app"
+    },
+    "android": {
+      "package": "com.beforepeak.app"
+    },
+    "scheme": "beforepeak",
+    "developmentClient": {
+      "silentLaunch": true
+    },
+    "plugins": [
+      "expo-dev-client"
+    ]
+  }
 }

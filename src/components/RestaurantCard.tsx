@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+// import { Image } from 'react-native'; // Commented for Expo Go compatibility
+// import Icon from 'react-native-vector-icons/MaterialIcons'; // Commented for Expo Go compatibility
 
 const { width } = Dimensions.get('window');
 
@@ -34,7 +35,9 @@ export default function RestaurantCard({ restaurant, onPress, style = 'grid', si
   if (style === 'horizontal') {
     return (
       <TouchableOpacity style={[styles.horizontalCard, { width: cardWidth }]} onPress={onPress}>
-        <Image source={{ uri: restaurant.image }} style={styles.horizontalImage} />
+        <View style={[styles.horizontalImage, styles.imagePlaceholder]}>
+          <Text style={styles.placeholderText}>📷</Text>
+        </View>
         <View style={styles.discountBadgeSmall}>
           <Text style={styles.discountTextSmall}>{restaurant.discount}</Text>
         </View>
@@ -56,7 +59,9 @@ export default function RestaurantCard({ restaurant, onPress, style = 'grid', si
   if (style === 'list') {
     return (
       <TouchableOpacity style={styles.listCard} onPress={onPress}>
-        <Image source={{ uri: restaurant.image }} style={styles.listImage} />
+        <View style={[styles.listImage, styles.imagePlaceholder]}>
+          <Text style={styles.placeholderText}>📷</Text>
+        </View>
         <View style={styles.listContent}>
           <View style={styles.listHeader}>
             <Text style={styles.listName} numberOfLines={1}>{restaurantName}</Text>
@@ -84,7 +89,9 @@ export default function RestaurantCard({ restaurant, onPress, style = 'grid', si
 
   return (
     <TouchableOpacity style={[styles.gridCard, { width: cardWidth }]} onPress={onPress}>
-      <Image source={{ uri: restaurant.image }} style={styles.gridImage} />
+      <View style={[styles.gridImage, styles.imagePlaceholder]}>
+        <Text style={styles.placeholderText}>📷</Text>
+      </View>
       <View style={styles.discountBadge}>
         <Text style={styles.discountText}>{restaurant.discount}</Text>
       </View>
@@ -153,5 +160,9 @@ const styles = StyleSheet.create({
   availability: { flexDirection: 'row', alignItems: 'center' },
   nextSlot: { fontSize: 12, marginLeft: 4, fontWeight: '500' },
   nextSlotSmall: { fontSize: 10, marginLeft: 2, fontWeight: '500' },
+
+  // Placeholder styles for Expo Go compatibility
+  imagePlaceholder: { alignItems: 'center', justifyContent: 'center' },
+  placeholderText: { fontSize: 24, opacity: 0.5 },
 });
 
